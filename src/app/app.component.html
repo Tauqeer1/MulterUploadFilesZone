@@ -1,0 +1,52 @@
+<div class="md-toolbar-class">
+
+	<md-toolbar color="primary" class="toolbar-top md-elevation-z4">
+		<!-- material-icons are part of google design -->
+		<i class="material-icons" (click)="toggleSideNav()" style="font-size:36px; cursor:pointer">
+              menu
+          </i>
+
+		<main-header></main-header>
+
+		<span class="fill-remaining"></span>
+
+		<div style="float:right">
+			<i class="material-icons" style="font-size:36px; cursor:pointer" (click)="end.toggle()">
+                person
+               </i>
+		</div>
+	</md-toolbar>
+
+	<md-sidenav-layout class="sidenav-layout">
+		<!-- Will clean up and inject our own components into md-sidenav -->
+		<md-sidenav id="sideMenuMain" class="left-slide-menu" #start mode="over">
+			<br/>
+			<a [routerLink]="['']">Home</a>     <br/>
+			
+			<a [routerLink]="['/about']">About</a>      <br/>
+			<a [routerLink]="['/images']">Images</a>      <br/>
+
+					
+			<button md-button (click)="start.mode = (start.mode == 'push' ? 'over' : (start.mode == 'over' ? 'side' : 'push'))">Toggle Mode</button>
+			<div>Mode: {{start.mode}}</div>
+			<br>
+
+		</md-sidenav>
+
+		<md-sidenav id="sideMenuRight" class="right-slide-menu" #end align="end" mode="over">
+			<button md-button-raised style="width: 100%" color="azure" (click)="logout()"> Log Out </button> End Side Drawer
+			<br>
+			<button md-button (click)="end.close()">Close</button>
+			<div>
+			</div>
+		</md-sidenav>
+
+
+		<div style="margin-top:75px; height:vh">
+				<br/>
+			<router-outlet></router-outlet>
+		</div>
+
+
+	</md-sidenav-layout>
+</div>
